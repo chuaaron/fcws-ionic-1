@@ -1,0 +1,68 @@
+<ion-view view-title="首页">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-email" href="#/sidemenu/mailbox" ng-if="unRead===0 ">
+        </a>
+        <a class="button button-icon icon ion-email-unread" href="#/sidemenu/mailbox" ng-if="unRead!==0 ">
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <ion-refresher on-refresh="reloadRecent()"></ion-refresher>
+        <div class="item item-divider item-balanced">
+            最新情报
+
+        </div>
+        <div class="card" ng-show="read_recent_posts_error">
+            <div class="item item-text-wrap">
+            <span>
+              当前网络不通或没有任何新的情报
+            </span>
+            </div>
+        </div>
+        <ion-list can-swipe="true">
+            <div ng-repeat="post in recent_posts">
+                <a class="item" ng-class="{'important': post.important}"
+                   ui-sref='sidemenu.post({post_id: post._id})'>
+                    <button class="button button-outline button-assertive button-small"
+                            ng-if="post.important">紧急
+                    </button>
+
+                    <button class="button button-outline button-balanced button-small"
+                            ng-if="!post.important">日常
+                    </button>
+
+                    {{post.content | limitTo:lengthLimit}}{{post.content.length > lengthLimit?"...":""}}
+                 <span am-time-ago="post.create_at" class="item-note">
+                 </span>
+                </a>
+            </div>
+        </ion-list>
+
+        <div class="item item-divider item-balanced">
+            最新文档
+        </div>
+        <div class="card" ng-show="read_recent_docs_error">
+            <div class="item item-text-wrap">
+            <span>
+              当前网络不通或没有任何新的文档
+            </span>
+            </div>
+        </div>
+        <div class="list">
+            <div ng-repeat="doc in recent_docs">
+                <a class="item item-icon-left" ng-click="showDoc(doc._id)">
+                    <i class="icon ion-ios-book-outline balanced"></i>
+                    {{doc.title | limitTo:lengthLimit}}{{doc.title.length > lengthLimit?"...":""}}
+                    <span am-time-ago="doc.create_at" class="item-note">
+                 </span>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>
+
+

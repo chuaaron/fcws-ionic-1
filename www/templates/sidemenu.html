@@ -1,0 +1,46 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-balanced nav-title-slide-ios">
+      <ion-nav-back-button class="button-clear">
+      </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent">
+    </ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-content class="bar-balanced">
+      <ion-list>
+        <ion-item nav-clear menu-close class="item item-avatar item-balanced" href="#/sidemenu/user">
+          <img ng-src="img/commander.jpg" ng-if="role <= 5 ">
+          <img ng-src="img/sodier.jpg" ng-if="role === 6">
+          <h2 class=" light">
+            <i class="icon ion-ios-star"></i>{{description}}
+          </h2>
+          <a>{{username || "" }} </a>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/sidemenu/dashboard" class="item-icon-left">
+          <i class="icon ion-ios-home-outline balanced">        </i>首页</ion-item>
+        <ion-item nav-clear menu-close href="#/sidemenu/posts" class="item-icon-left">
+          <i class="icon ion-ios-pulse balanced">              </i>情报信息</ion-item>
+        <ion-item nav-clear menu-close href="#/sidemenu/control" class="item-icon-left">
+          <i class="icon ion-ios-speedometer-outline balanced"></i>指挥控制</ion-item>
+        <ion-item nav-clear menu-close href="#/sidemenu/train" class="item-icon-left">
+          <i class="icon ion-ios-shuffle balanced">            </i>军事训练</ion-item>
+        <ion-item nav-clear menu-close href="#/sidemenu/education" class="item-icon-left">
+          <i class="icon ion-ios-bookmarks-outline balanced">  </i>教育管理</ion-item>
+        <ion-item nav-clear menu-close href="#/sidemenu/defence" class="item-icon-left">
+          <i class="icon ion-ios-plus-outline balanced">       </i>国防动员</ion-item>
+        <ion-item nav-clear menu-close href="#/sidemenu/contact" class="item-icon-left">
+          <i class="icon ion-ios-people-outline balanced">     </i>通讯录</ion-item>
+        <!--<ion-item nav-clear menu-close href="#/sidemenu/mailbox" class="item-icon-left" >-->
+          <!--<i class="icon ion-ios-email-outline balanced">     </i>-->
+            <!--<span class="badge badge-assertive" ng-if="unRead!==0 ">{{unRead}}</span>-->
+            <!--收件箱</ion-item>-->
+        <ion-item nav-clear menu-close href="#/sidemenu/config" class="item-icon-left">
+          <i class="icon ion-ios-settings balanced">           </i>设置</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

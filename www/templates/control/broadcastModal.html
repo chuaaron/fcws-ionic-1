@@ -1,0 +1,27 @@
+<div class="modal">
+    <ion-header-bar class="bar bar-balanced">
+        <button class="button button-clear" ng-click="closeNewBroadcastModal()">取消</button>
+        <h1 class="title">命令</h1>
+        <button class="button button-clear" ng-disabled="newBroadcast.content === ''"
+                ng-click="broadcast(newBroadcast)">
+            发送
+        </button>
+    </ion-header-bar>
+    <ion-content>
+
+        <ion-list>
+            <textarea class="padding" style="height:100px;width: 100%;" placeholder="输入命令内容..."
+                      ng-model="newBroadcast.content">
+            </textarea>
+
+            <div class="item item-divider">
+                接收人
+            </div>
+            <div class="item item-text-wrap">
+                <label ng-repeat="receiver in newBroadcast.selection">
+                    {{receiver.description+" , "}}
+                </label>
+            </div>
+        </ion-list>
+    </ion-content>
+</div>

@@ -1,0 +1,11 @@
+{
+  "name": "fcws",
+  "app_id": "fa093f3f",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
+}

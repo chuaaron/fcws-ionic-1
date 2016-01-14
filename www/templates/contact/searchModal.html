@@ -1,0 +1,49 @@
+<div class="modal">
+    <!--<ion-header-bar class="bar bar-balanced">-->
+    <!--<button class="button button-clear" ng-click="closeSearchModal()">取消</button>-->
+    <!--<h1 class="title">广播</h1>-->
+    <!--<button class="button button-clear" ng-disabled="newBroadcast.content === ''" ng-click="broadcast(newBroadcast)">-->
+    <!--发送-->
+    <!--</button>-->
+    <!--</ion-header-bar>-->
+    <!--<ion-content class="padding">-->
+    <!--<textarea style="height:100px;width: 100%;" placeholder="输入广播内容..." ng-model="newBroadcast.content"></textarea>-->
+    <!--</ion-content>-->
+
+    <div class="bar bar-header item-input-inset">
+        <button class="button button-clear " ng-click="closeSearchModal()">
+            <i class="balanced">取消</i>
+        </button>
+        <span class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="请输入姓名关键字" ng-model="search.key">
+                <i class="icon ion-close-circled placeholder-icon" style="vertical-align: middle;"
+                   on-tap="clearSearch()" ng-if="search.key.length"></i>
+        </span>
+
+
+        <button class="button button-clear" ng-click="Search(search.key)">
+            <i class="balanced">搜索</i>
+        </button>
+    </div>
+
+    <ion-content class="has-header ">
+        <ion-list can-swipe="true">
+            <ion-item ng-repeat="user in searchResults" class="item item-avatar-left">
+                <!--<img ng-src="{{user.avatar}}">-->
+                <img ng-src="img/sodier.jpg">
+
+                <h2>
+                    <i class="icon ion-ios-person-outline balanced"> </i> {{user.name}}
+                     <span class="item-note">
+                         <i class="icon ion-ios-telephone-outline balanced"> </i> {{user.phone_no}}
+                     </span>
+                </h2>
+
+                <p><i class="icon ion-ios-home-outline "> </i> {{user.address}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+
+</div>

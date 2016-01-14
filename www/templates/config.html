@@ -1,0 +1,27 @@
+<ion-view view-title="设置">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content >
+        <div class="config-logo">
+            <img src="img/logo.png" alt="logo">
+            <h2>当前版本 : {{currentVersion}}</h2>
+        </div>
+        <div class="padding">
+            <button class="button button-block button-calm" ng-click="checkUpdate()">
+                检查更新
+            </button>
+            <button class="button button-block button-positive" ng-click="changePassword()">
+                修改密码
+            </button>
+            <button class="button button-block button-balanced" ng-click="logout()">
+                注销登录
+            </button>
+            <button class="button button-block button-assertive" ng-click="shutdown()">
+                退出
+            </button>
+
+        </div>
+    </ion-content>
+
+</ion-view>

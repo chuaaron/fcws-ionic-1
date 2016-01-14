@@ -1,0 +1,34 @@
+<ion-view view-title="镇通讯录">
+    <!--<div class="bar bar-subheader item-input-inset ">-->
+    <!--<label class="item-input-wrapper">-->
+    <!--<i class="icon ion-ios-search placeholder-icon"></i>-->
+    <!--<input type="search" placeholder="Search">-->
+    <!--</label>-->
+    <!--<button class="button button-clear button-balanced">-->
+    <!--Cancel-->
+    <!--</button>-->
+    <!--</div>-->
+    <ion-content class="has-header ">
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+        <ion-list can-swipe="true">
+            <ion-item ng-repeat="user in users" class="item item-avatar-left">
+                <!--<img ng-src="{{user.avatar}}">-->
+                <img ng-src="img/sodier.jpg">
+
+                <h2>
+                    <i class="icon ion-ios-person-outline balanced"> </i> {{user.name}}
+                     <span class="item-note">
+                         <i class="icon ion-ios-telephone-outline balanced"> </i> {{user.phone_no}}
+                     </span>
+                </h2>
+
+                <p><i class="icon ion-ios-home-outline "> </i> {{user.address}}</p>
+                <!--<i class="icon ion-ios-person-outline balanced"></i>-->
+
+                <!--<span class="item-note">-->
+                <!---->
+                <!--</span>-->
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

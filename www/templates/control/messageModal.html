@@ -1,0 +1,12 @@
+<div class="modal">
+    <ion-header-bar class="bar bar-balanced">
+        <button class="button button-clear" ng-click="closeNewMessageModal()">取消</button>
+        <h1 class="title">命令</h1>
+        <button class="button button-clear" ng-disabled="newMessage.content === ''" ng-click="send(newMessage)">
+            发送
+        </button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <textarea style="height:100px;width: 100%;" placeholder="输入命令内容..." ng-model="newMessage.content"></textarea>
+    </ion-content>
+</div>

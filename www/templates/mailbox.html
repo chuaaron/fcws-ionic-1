@@ -1,0 +1,37 @@
+<ion-view view-title="收件箱">
+    <!--<ion-nav-buttons side="left">-->
+        <!--<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>-->
+    <!--</ion-nav-buttons>-->
+    <ion-content>
+        <ion-refresher on-refresh="reloadMessages()"></ion-refresher>
+        <ion-list>
+            <div class="item item-divider balanced">
+                未读消息
+            </div>
+            <div ng-repeat="message in messages.hasnot_read_messages">
+                <div class="item item-avatar-left" ng-click="showContent(message)">
+                    <img src="img/commander.jpg">
+                    <span class="item-note"  am-time-ago="message.create_at" ></span>
+
+                    <h2>{{message.sender.description}}{{message.sender.name}}</h2>
+
+                    <p>{{message.content}}</p>
+                </div>
+            </div>
+
+            <div class="item item-divider balanced">
+                已读消息
+            </div>
+            <div ng-repeat="message in messages.has_read_messages">
+                <div class="item item-avatar-left" ng-click="showContent(message)">
+                    <img src="img/commander.jpg">
+                    <span class="item-note" am-time-ago="message.create_at"></span>
+
+                    <h2>{{message.sender.description}}{{message.sender.name}}</h2>
+
+                    <p>{{message.content}}</p>
+                </div>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

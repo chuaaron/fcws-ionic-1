@@ -1,0 +1,61 @@
+<ion-view view-title="情报信息" class="posts">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <a class="button button-clear" ng-click="showNewPostModal()">
+      <i class="icon ion-ios-compose-outline"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content class="content">
+    <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+    <div class="card" ng-show="noData">
+      <div class="item item-text-wrap">
+        <span>
+          目前没有任何新的情报，点击右上角的按钮发布新的情报
+        </span>
+      </div>
+    </div>
+
+
+    <ion-list can-swipe="true">
+        <div class="item item-icon-left" ng-show="loadError">
+            <i class="icon ion-ios-information-outline assertive"></i>
+        <span>
+            当前网络不可用,请检查你的网络设置
+        </span>
+        </div>
+      <div ng-repeat="post in posts">
+        <a class="item item-avatar-left" ng-class="{'important': post.important}" ui-sref='sidemenu.post({post_id: post._id})'>
+          <img ng-src="img/commander.jpg" ng-if="post.author.role <= 5 ">
+          <img ng-src="img/sodier.jpg" ng-if="post.author.role === 6">
+          <h2>
+            <button class="button button-outline button-assertive button-small" ng-if="post.important">
+              紧急
+            </button>
+            <button class="button button-outline button-balanced button-small" ng-if="!post.important">日常</button>
+            {{post.content | limitTo:lengthLimit}}{{post.content.length > lengthLimit?"...":""}}
+            <span>
+              <!-- <i class="icon ion-ios-heart item-note ">
+                {{post.likesCount >0?post.likesCount:0}}
+              </i> -->
+              <!-- <i class="icon ion-chatboxes  item-note">
+                 {{post.replyCount >0?post.replyCount:0}}&nbsp;
+               </i> -->
+            </span>
+          </h2>
+          <p>
+            <i class="icon ion-ios-person-outline balanced"></i> {{post.author.name || post.author.description || ""}}
+            <span am-time-ago="post.create_at" class="item-note">
+            </span>
+          </p>
+        </a>
+      </div>
+    </ion-list>
+
+    <ion-infinite-scroll on-infinite="loadMore()" icon="ion-loading-c" ng-if="hasNextPage && !loadError">
+    </ion-infinite-scroll>
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,23 @@
+<ion-view view-title="设置密码">
+  <ion-content class="has-header padding">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">原密码</span>
+        <input type="password" ng-model="user.password">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">新密码</span>
+        <input type="password" ng-model="user.new_password">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">确认密码 </span>
+        <input type="password" ng-model="user.repeat_password">
+      </label>
+      <label class="item item-input">
+        <button class="button button-block button-balanced" ng-click="changePassword()">
+          完成
+        </button>
+      </label>
+    </div>
+  </ion-content>
+</ion-view>

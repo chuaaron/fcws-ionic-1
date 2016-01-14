@@ -1,0 +1,67 @@
+<ion-view view-title="详情">
+    <ion-nav-buttons side="right">
+        <a class="button button-clear" ng-if="(userId === post.author_id)" ng-click="showDeletePostConfirm()">
+            <i class="icon ion-trash-b"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher on-refresh="reloadPost()"></ion-refresher>
+        <div class="row post">
+            <div class="col col90">
+                <div class="topic-content" ng-bind-html="post.content">
+                </div>
+                <ion-list can-swipe="true">
+                    <!--<div ng-repeat="photo in post.photos" class="item-thumbnail-left">-->
+                    <div ng-repeat="photo in post.photos">
+                        <img ng-src={{photo}} ng-click="showImageModal(photo)" style="width:100%">
+                    </div>
+                </ion-list>
+
+                <div class="summary">
+                    <strong>
+                        <p>
+                            <img ng-src="img/commander.jpg" ng-if="post.author.role <= 5 " class="avatar">
+                            <img ng-src="img/sodier.jpg" ng-if="post.author.role === 6" class="avatar">
+                            {{post.author.name || post.author.description|| "" }}
+                        </p>
+                    </strong>
+                    <span class="item-note" am-time-ago="post.createDate"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <ion-list class="replies">
+            <ion-item ng-if="post.replies.length === 0">
+                暂无评论
+            </ion-item>
+            <ion-item class="item-avatar" ng-repeat="reply in post.replies" on-hold="showActions(reply)">
+                <img ng-src="img/commander.jpg" ng-if="reply.author.role <= 5 ">
+                <img ng-src="img/sodier.jpg" ng-if="reply.author.role === 6">
+
+                <p>
+
+                <p ng-class="{'bold': reply.author_id=== post.userId}">
+                    {{reply.author.name || reply.author.description || ""}}
+                </p>
+          <span class="item-note" am-time-ago="reply.createDate">
+          </span>
+                </p>
+                <div class="reply-content" ng-bind-html="reply.content"></div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+    <ion-footer-bar class="bar-light item item-input-inset reply-new" keyboard-attach>
+        <!-- <a class="button button-clear" ng-click="Like()">
+          <i class="icon ion-ios-heart assertive" ng-if="isLike"></i>
+          <i class="icon ion-ios-heart-outline assertive" ng-if="!isLike"></i>
+        </a> -->
+        <label class="item-input-wrapper">
+            <input type="text" placeholder="回复" ng-model="replyData.content">
+        </label>
+        <button class="button button-small button-outline button-balanced" ng-click="addReply()">
+            提交
+        </button>
+    </ion-footer-bar>
+</ion-view>

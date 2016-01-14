@@ -1,0 +1,218 @@
+/*ion-side-menu ion-content{
+  background-color: #000;
+}*/
+
+
+/*ion-side-menu ion-item {
+  background-color:red;
+}*/
+
+
+
+
+.signup-page {
+  text-align: center;
+  background-size: cover;
+  background : no-repeat center;
+  padding: 50px;
+}
+
+.config-logo {
+  text-align: center;
+  background-size: cover;
+  background : no-repeat center;
+    margin-bottom: 30px;
+  /*padding: 50px;*/
+}
+
+/*.signup-page {*/
+  /*width: 88%;*/
+  /*margin: 20% auto 30px auto;*/
+/*}*/
+
+.signup-page label.username{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgb(81,122,245);
+}
+
+.signup-page label.lock{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgb(131,209,118);
+}
+
+.signup-page  label.username i,.signup-page label.lock i{
+  margin-right: 15px;
+  font-size: 25px;
+}
+
+.signup-page .button {
+  margin: 20px auto;
+}
+
+.signup-page img{
+  width: 50%;
+  height: 50%;
+  margin-bottom: 2em;
+}
+
+/*
+.signup-page .list label.username:after {
+  content: "";
+  background: url('../img/user_darkui.png');
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-repeat: no-repeat;
+  top: 14px;
+  position: absolute;
+  background-position: center;
+  margin: 0 0 0 9%;
+  background-size: contain;
+  left: -22px;
+}
+.signup-page .list label.lock:after {
+  content: "";
+  background: url('../img/lock_darkui.png');
+  width: 22px;
+  height: 22px;
+  display: block;
+  background-repeat: no-repeat;
+  top: 14px;
+  position: absolute;
+  background-position: center;
+  margin: 0 0 0 9%;
+  background-size: contain;
+  left: -22px;
+}
+.signup-page .list label.item-input {
+  padding: 10px 0 4px 45px;
+  background: transparent;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #606170;
+}
+.signup-page .list label.item-input input[type="text"],
+.signup-page .list label.item-input input[type="password"] {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+.signup-page .button {
+  width: 88%;
+  height: 56px;
+  margin: 5px auto;
+  position: relative;
+  padding: 0;
+  background-position: cover;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}*/
+
+
+.margin {
+  margin-left: 9px;
+  margin-right: 9px;
+}
+.icon-actions {
+  font-size: 23px;
+}
+.checkbox {
+  vertical-align: middle;
+}
+.actions {
+  float: right;
+}
+.item-text-wrap {
+  overflow: auto;
+}
+.ion-checkmark-circled.icon-actions.margin {
+  margin-right: 35px;
+}
+
+/*.posts .content  .item{
+    border-right: 6px solid #4f8ef7;
+
+}
+
+.posts .content .item.important{
+    border-right: 6px solid #d2173e;
+  }*/
+
+.post .title {
+  margin: 0;
+}
+.post .summary {
+  margin: 8px 0;
+}
+.post .avatar {
+  width: 16px;
+  border-radius: 8px;
+  vertical-align: middle;
+}
+.replies .item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  white-space: normal;
+}
+.replies .reply-content img {
+  max-width: 100%;
+}
+.replies .reply-content p {
+  overflow: visible !important;
+  white-space: normal !important;
+}
+.replies p {
+  color: #08c;
+  text-decoration: none;
+}
+.bold {
+  font-weight: bold;
+}
+.post .summary a {
+  color: #08c;
+  text-decoration: none;
+}
+.reply-new input {
+  background: transparent;
+}
+.image-modal {
+  background-color: #212326;
+  width: 100% !important;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+}
+.transparent {
+  background: transparent !important;
+}
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 100%;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+.wide-as-needed {
+  overflow: scroll;
+}
+
+/*.messages .hasnot_read {
+  border-left: 6px solid #4377fc;
+}
+
+.messages .has_read {
+  border-left: 6px solid #d6d6d6;
+}*/
+
+#docModal #docContent img{
+  width:100%;
+}

@@ -1,0 +1,17 @@
+<ion-view view-title="{{title}}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content>
+
+        <div class="list">
+            <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+            <div ng-repeat="doc in docs">
+                <a class="item item-icon-left item-icon-right" ng-click="showDoc(doc._id)">
+                    <i class="icon ion-ios-book-outline balanced"></i> {{doc.title}}
+                    <i class="icon ion-ios-arrow-right balanced"></i>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

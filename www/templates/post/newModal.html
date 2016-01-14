@@ -1,0 +1,37 @@
+<div class="modal">
+    <ion-header-bar class="bar bar-balanced">
+        <button class="button button-clear" ng-click="closeNewPostModal()">取消</button>
+        <h1 class="title">情报</h1>
+        <button class="button button-clear" ng-disabled="newPost.content === '' &&  imageToUpload === null" ng-click="createNewPost()">
+            发布
+        </button>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <textarea class="padding" style="height:100px;width: 100%;" placeholder="输入情报内容..."
+                      ng-model="newPost.content"></textarea>
+        </ion-list>
+        <div class="item item-toggle">
+            紧急上报
+            <label class="toggle toggle-balanced">
+                <input type="checkbox" ng-model="newPost.important">
+                <div class="track">
+                    <div class="handle"></div>
+                </div>
+            </label>
+        </div>
+        <div class="item item-icon-right">
+            图片
+            <i class="icon icon-large ion-ios-camera-outline" ng-click="showActions()"></i>
+        </div>
+
+        <ion-item ng-if="imageToUpload" class="card">
+        <div  class="item item-thumbnail-left item-icon-right">
+        <img ng-src={{imageToUpload}} ng-click="showImageModal(imageToUpload)">
+            <i class="button button-clear icon ion-close-round" ng-click="removePhoto(imageToUpload)"></i>
+        </div>
+        </ion-item>
+    </ion-content>
+
+</div>
+
