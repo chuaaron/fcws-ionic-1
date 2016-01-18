@@ -18,12 +18,13 @@ angular.module('fcws.services')
 
             //如果这里 data设为 user则会出现bug，因为这里已经有一个全局的user了。
             loginUser: function (data) {
-                $log.log(data.id + " " + data.name + " " + data.description + " " + data.role + " " + data.accessToken);
+                $log.log(data.id + " " + data.name + " " + data.description + " " + data.role + " " + data.accessToken +" " +data.district);
                 $localstorage.set(userKey, {
                     id: data.id,
                     name: data.name,
                     description: data.description,
                     role: data.role,
+                    district: data.district,
                     accessToken: data.accessToken
                 });
                 //$localstorage.set(isAuthenticatedKey, true);
@@ -55,6 +56,9 @@ angular.module('fcws.services')
             },
             getToken: function () {
                 return user.accessToken;
+            },
+            getDistrict : function(){
+                return user.district;
             }
         };
     });

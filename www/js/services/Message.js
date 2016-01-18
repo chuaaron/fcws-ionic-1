@@ -22,6 +22,13 @@ angular.module('fcws.services')
             //},
             sendBroadcast: function (form) {
                 return $http.post(SERVER.api_v1 + '/messages/broadcast', form);
-            }
+            },
+            sendLevels: function (form) {
+                return $http.post(SERVER.api_v1 + '/messages/levels', form);
+            },
+            sendReply: function (form) {
+                return $http.post(SERVER.api_v1 + '/messages/reply', form);
+            },
+
         };
     });

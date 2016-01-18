@@ -1,21 +1,27 @@
 angular.module('fcws.controllers')
     .controller('ControlCtrl', function ($scope, $rootScope, Orgnizations, User, $ionicModal, Message, $filter, API) {
 
+
+    });
+
+angular.module('fcws.controllers')
+    .controller('ControlDirectCtrl', function ($scope, $rootScope, Orgnizations, User, $ionicModal, Message, $filter, API) {
+
         $scope.$on('$ionicView.beforeEnter', function () {
             $scope.noData = false;
             $scope.noNet = false;
             $scope.filter = {
-                isAllSelect :  false
+                isAllSelect: false
             }
             loadBelongs();
         });
 
-        $scope.toggleAllSelection = function(){
-            if(!$scope.filter.isAllSelect){
+        $scope.toggleAllSelection = function () {
+            if (!$scope.filter.isAllSelect) {
                 $scope.newBroadcast.selection = [];
-            }else{
+            } else {
                 $scope.newBroadcast.selection = [];
-                $scope.belongs.forEach(function(belong){
+                $scope.belongs.forEach(function (belong) {
                     $scope.newBroadcast.selection.push(belong);
                 });
             }
@@ -26,13 +32,13 @@ angular.module('fcws.controllers')
             var idx = $scope.newBroadcast.selection.indexOf(belong);
             if (idx > -1) {
                 $scope.newBroadcast.selection.splice(idx, 1);
-            }else {
+            } else {
                 $scope.newBroadcast.selection.push(belong);
             }
 
-            if($scope.newBroadcast.selection.length <  $scope.belongs.length){
+            if ($scope.newBroadcast.selection.length < $scope.belongs.length) {
                 $scope.filter.isAllSelect = false;
-            }else if($scope.newBroadcast.selection.length === $scope.belongs.length){
+            } else if ($scope.newBroadcast.selection.length === $scope.belongs.length) {
                 $scope.filter.isAllSelect = true;
             }
 
@@ -44,12 +50,12 @@ angular.module('fcws.controllers')
             Orgnizations.getBelongs()
                 .success(function (belongs) {
                     $scope.belongs = belongs;
-                    $scope.selection = [];
+                    $scope.newBroadcast.selection = [];
                     $scope.noNet = false;
                     //console.log(JSON.stringify(belongs));
                     if (belongs.length === 0) {
                         $scope.noData = true;
-                    }else{
+                    } else {
                         $scope.noData = false;
                     }
                 })
@@ -86,9 +92,9 @@ angular.module('fcws.controllers')
         });
 
         $scope.showNewBroadcastModal = function () {
-            if($scope.newBroadcast.selection.length === 0 ){
+            if ($scope.newBroadcast.selection.length === 0) {
                 $rootScope.notify("请至少选择一个联系人");
-                return ;
+                return;
             }
             //console.log(JSON.stringify( $scope.newBroadcast.selection));
             console.log($scope.newBroadcast.selection);
@@ -102,10 +108,10 @@ angular.module('fcws.controllers')
         };
 
         $scope.broadcast = function (broadcast) {
-           if(!broadcast.content){
-               $rootScope.notify("不能发送空消息");
-               return ;
-           }
+            if (!broadcast.content) {
+                $rootScope.notify("不能发送空消息");
+                return;
+            }
             Message.sendBroadcast(broadcast)
                 .success(function () {
                     $rootScope.notify("消息发送成功!");
@@ -161,5 +167,127 @@ angular.module('fcws.controllers')
         //            $rootScope.notify("消息发送失败!");
         //        });
         //};
+
+    });
+
+
+
+
+angular.module('fcws.controllers')
+    .controller('ControlBroadcastCtrl', function ($scope, $rootScope, Orgnizations, User, $ionicModal, Message, $filter, API) {
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $scope.noData = false;
+            $scope.noNet = false;
+            $scope.filter = {
+                isAllSelect: false
+            }
+            loadLevels();
+        });
+
+        $scope.toggleAllSelection = function () {
+            if (!$scope.filter.isAllSelect) {
+                $scope.newBroadcast.selection = [];
+            } else {
+                $scope.newBroadcast.selection = [];
+                $scope.levels.forEach(function (level) {
+                    $scope.newBroadcast.selection.push(level);
+                });
+            }
+        }
+        //
+        // toggle selection for a given fruit by name
+        $scope.toggleSelection = function toggleSelection(level) {
+            var idx = $scope.newBroadcast.selection.indexOf(level);
+            if (idx > -1) {
+                $scope.newBroadcast.selection.splice(idx, 1);
+            } else {
+                $scope.newBroadcast.selection.push(level);
+            }
+
+            if ($scope.newBroadcast.selection.length < $scope.levels.length) {
+                $scope.filter.isAllSelect = false;
+            } else if ($scope.newBroadcast.selection.length === $scope.levels.length) {
+                $scope.filter.isAllSelect = true;
+            }
+
+            //console.log(JSON.stringify($scope.newBroadcast.selection));
+        };
+
+        var loadLevels = function () {
+            Orgnizations.getLevels()
+                .success(function (levels) {
+                    $scope.levels = levels;
+                    $scope.newBroadcast.selection = [];
+                    $scope.noNet = false;
+                    //console.log(JSON.stringify(belongs));
+                    if (levels.length === 0) {
+                        $scope.noData = true;
+                    } else {
+                        $scope.noData = false;
+                    }
+                })
+                .error(function (err, status) {
+                    if (status === 0) {
+                        $scope.noNet = true;
+                    } else {
+                        $rootScope.notify("未知错误");
+                    }
+                    $scope.levels = [];
+                }).finally(function () {
+                $rootScope.$broadcast('scroll.refreshComplete');
+            })
+        };
+
+        $scope.reloadLevels = function () {
+            loadLevels();
+        };
+
+
+        $scope.newBroadcast = {
+            content: '',
+            selection: []
+        };
+
+        // Create the new  broadcast modal
+        $ionicModal.fromTemplateUrl('templates/control/broadcastModal.html', {
+            animation: 'slide-in-up',
+            scope: $scope
+        }).then(function (modal) {
+            $scope.newBroadcastModal = modal;
+        });
+
+        $scope.showNewBroadcastModal = function () {
+            if ($scope.newBroadcast.selection.length === 0) {
+                $rootScope.notify("请至少选择一个级别");
+                return;
+            }
+            //console.log(JSON.stringify( $scope.newBroadcast.selection));
+            console.log($scope.newBroadcast.selection);
+            $scope.newBroadcast.content = "";
+            $scope.newBroadcastModal.show();
+        };
+
+        //close new mailbox modal
+        $scope.closeNewBroadcastModal = function () {
+            $scope.newBroadcastModal.hide();
+        };
+
+        $scope.broadcast = function (broadcast) {
+            if (!broadcast.content) {
+                $rootScope.notify("不能发送空消息");
+                return;
+            }
+            $rootScope.show("正在发送广播消息...请稍候");
+            Message.sendLevels(broadcast)
+                .success(function () {
+                    $rootScope.hide();
+                    $rootScope.notify("广播消息发送成功!");
+                    $scope.newBroadcastModal.hide();
+                })
+                .error(function () {
+                    $rootScope.hide();
+                    $rootScope.notify("广播消息发送失败!");
+                });
+        };
 
     });

@@ -27,7 +27,18 @@ angular.module('fcws.controllers')
             Update.getUpdateInfo()
                 .success(function(data){
                     var serverAppVersion = data.versionCode;
-                    if ($scope.currentVersion  !== serverAppVersion) {
+                    var local = $scope.currentVersion.split(".");
+                    var server = serverAppVersion.split(".");
+                   console.log(local + "  " + server) ;
+                    if(local.length !==3 || server.length !==3 ){
+                        $rootScope.notify("版本错误");
+                        return ;
+                    }
+
+                    if (parseInt(local[0]) < parseInt(server[0])
+                        || parseInt(local[1]) < parseInt(server[1])
+                        || parseInt(local[2]) < parseInt(server[2])) {
+
                         showUpdateConfirm(data);
                     }else{
                         $rootScope.notify("已是最新版本");

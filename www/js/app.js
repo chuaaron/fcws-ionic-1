@@ -206,15 +206,39 @@ angular.module('fcws', [
                 }
             })
 
+
+
             .state('sidemenu.control', {
                 url: '/control',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/control/control.html',
+                        templateUrl: 'templates/control/tab.html',
                         controller: 'ControlCtrl'
                     }
                 }
             })
+
+            .state('sidemenu.control.direct', {
+                url: '/direct',
+                views: {
+                    'direct': {
+                        templateUrl: 'templates/control/direct.html',
+                        controller: 'ControlDirectCtrl'
+                    }
+                }
+            })
+
+            .state('sidemenu.control.broadcast', {
+                url: '/broadcast',
+                views: {
+                    'broadcast': {
+                        templateUrl: 'templates/control/broadcast.html',
+                        controller: 'ControlBroadcastCtrl'
+                    }
+                }
+            })
+
+
 
             .state('sidemenu.train', {
                 url: '/train',

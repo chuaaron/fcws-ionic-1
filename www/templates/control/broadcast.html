@@ -1,0 +1,39 @@
+<ion-view view-title="广播指挥">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="showNewBroadcastModal()"
+                ng-disabled="noData || noNet || newBroadcast.selection.length === 0">发送广播
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher on-refresh="reloadLevels()"></ion-refresher>
+        <div class="card" ng-if="noData">
+            <div class="item item-text-wrap">
+        <span>
+          您没有任何可以命令的区域
+        </span>
+            </div>
+        </div>
+        <div class="card" ng-if="noNet">
+            <div class="item item-text-wrap">
+                <span>
+                    当前网络不通,无法进行指挥控制,请连接网络后下拉刷新进行尝试.
+                </span>
+            </div>
+        </div>
+        <ion-list>
+            <ion-checkbox  ng-model="filter.isAllSelect"  ng-click="toggleAllSelection()" ng-if="levels.length !== 0">全选</ion-checkbox>
+            <div class="item  item-checkbox" ng-repeat="level in levels">
+                <label class="checkbox">
+                    <input
+                            type="checkbox"
+                            ng-checked="newBroadcast.selection.indexOf(level) > -1"
+                            ng-click="toggleSelection(level)">
+                </label>
+                <h2>第{{level.level}}级,{{level.description}}  </h2>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

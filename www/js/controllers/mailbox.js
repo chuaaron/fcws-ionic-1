@@ -29,9 +29,50 @@ angular.module('fcws.controllers')
         }
 
         $scope.showContent = function (message) {
-            $ionicPopup.alert({
-                title: message.sender.description + message.sender.name,
-                template: "<br>" + message.content + "<br>"
+            console.log(JSON.stringify(message));
+            //$ionicPopup.alert({
+            //    title: message.sender.description + message.sender.name,
+            //    template: "<br>" + message.content + "<br>"
+            //});
+            $scope.reply = {};
+
+            var myPopup = $ionicPopup.show({
+                template: '<input type="text" ng-model="reply.content" placeholder="回复">',
+                title: "<br>" + message.content + "<br>",
+                scope: $scope,
+                buttons: [
+                    {text: '取消'},
+                    {
+                        text: '<b>回复</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            if (!$scope.reply.content) {
+                                //don't allow the user to close unless he enters wifi password
+                                e.preventDefault();
+                            } else {
+                                return $scope.reply.content;
+                            }
+                        }
+                    }
+                ]
             });
+
+            myPopup.then(function (res) {
+                if (res) {
+                    console.log('Tapped!', res);
+                    var form= {
+                        receiver_id: message.sender.id,
+                        content : res
+                    };
+                    Message.sendReply(form)
+                        .success(function () {
+                            $rootScope.notify("回复发送成功!");
+                        })
+                        .error(function () {
+                            $rootScope.notify("回复发送失败!");
+                        });
+                }
+            });
+
         };
     });
