@@ -19,7 +19,15 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    "com.synconset.imagepicker",
+    "cordova-plugin-app-version",
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-file",
+    "cordova-plugin-file-opener2",
+    "cordova-plugin-file-transfer",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-camera"
   ],
   "cordovaPlatforms": [
     "ios",

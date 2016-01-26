@@ -439,9 +439,9 @@ angular.module('fcws', [
         //docs:'http://fcws.nemoworks.info/assets/docs',
         //uploads: 'http://fcws.nemoworks.info/uploads'
 
-        //api_v1: 'http://localhost:3000/api/v1',
-        //docs:'http://localhost:3000/assets/docs',
-        //uploads: 'http://localhost:3000/uploads'
+        // api_v1: 'http://localhost:3000/api/v1',
+        // docs:'http://localhost:3000/assets/docs',
+        // uploads: 'http://localhost:3000/uploads'
 
 
         api_v1: 'http://121.42.175.137:3000/api/v1',
