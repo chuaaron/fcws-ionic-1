@@ -1,43 +1,44 @@
 angular.module('fcws.services')
-    .factory('User', function ($q, $localstorage, $log, $rootScope) {
+    .factory('User', function ($q, $localstorage){
         var userKey = 'user';
-        //var isAuthenticatedKey = 'isAuthenticated';
-        var userDetailKey = 'userDetail';
+        //var mypostsKey = 'myposts';
         var user = $localstorage.get(userKey);
-        var userdetail = $localstorage.get(userDetailKey);
-
         return {
 
-            getUserDetail : function () {
-                return $localstorage.get(userDetailKey);
-            },
-            storeUserDetail: function (data) {
-                $localstorage.set(userDetailKey,data);
-                userdetail =  $localstorage.get(userDetailKey);
-            },
 
-            //如果这里 data设为 user则会出现bug，因为这里已经有一个全局的user了。
+
+            getUser : function(){
+                return $localstorage.get(userKey);
+            },
             loginUser: function (data) {
-                $log.log(data.id + " " + data.name + " " + data.description + " " + data.role + " " + data.accessToken +" " +data.district);
                 $localstorage.set(userKey, {
                     id: data.id,
                     name: data.name,
                     description: data.description,
                     role: data.role,
                     district: data.district,
-                    accessToken: data.accessToken
+                    accessToken: data.accessToken,
+                    avatar : data.avatar
                 });
-                //$localstorage.set(isAuthenticatedKey, true);
                 user = $localstorage.get(userKey);
-                $rootScope.$broadcast('login');
             },
             logoutUser: function () {
                 $localstorage.remove(userKey);
-                //$localstorage.set(isAuthenticatedKey, false);
             },
-            //isAuthenticated: function () {
-            //    return $localstorage.get(isAuthenticatedKey);
+
+            //getMyPosts : function(){
+            //    return $localstorage.get(mypostsKey);
             //},
+            //storeMyPosts : function(post){
+            //    var myposts = $localstorage.get(mypostsKey);
+            //    if(!posts){
+            //
+            //    }
+            //},
+
+
+
+
             getUserId: function () {
                 return user.id + "";
             },
@@ -51,14 +52,20 @@ angular.module('fcws.services')
 
                 return user.name || "";
             },
-            isLeader: function () {
-                return user.isLeader || false;
-            },
             getToken: function () {
                 return user.accessToken;
             },
             getDistrict : function(){
                 return user.district;
-            }
+            },
+            getAvatar : function(){
+                return user.avatar;
+            },
+            setAvatar : function(avatar){
+                var user = $localstorage.get(userKey);
+                user.avatar = avatar;
+                $localstorage.set(userKey,user);
+            },
+
         };
     });

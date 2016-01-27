@@ -1,5 +1,7 @@
 angular.module('fcws.services')
-    .factory('Auth', function (SERVER, $http) {
+    .factory('Auth', function (SERVER, $http,$localstorage) {
+        var postskey = "recent_posts";
+        var replykey = "recent_replies";
         return {
             authentication: function (id, password) {
                 return $http.get(SERVER.api_v1 + '/auth/local', {
@@ -12,8 +14,29 @@ angular.module('fcws.services')
             changePassword: function (form) {
                 return $http.post(SERVER.api_v1 + '/users/changePassword', form);
             },
-            getDetail: function () {
-                return $http.get(SERVER.api_v1 + '/users/details');
+            uploadAvatar: function(form){
+                return $http.post(SERVER.api_v1 + '/users/avatar', form);
+            },
+            getLocalPosts : function(){
+                return $localstorage.get(postskey);
+            },
+            storeLocalPosts : function(posts){
+                $localstorage.set(postskey,posts);
+            },
+
+            getRecentPosts : function(){
+                return $http.get(SERVER.api_v1 + '/users/recentposts');
+            },
+
+            getLocalReplies: function(){
+                return $localstorage.get(replykey);
+            },
+            storeLocalReplies: function(replies){
+                $localstorage.set(replykey,replies);
+            },
+
+            getRecentReplies: function(){
+                return $http.get(SERVER.api_v1 + '/users/recentreplies');
             },
 
 

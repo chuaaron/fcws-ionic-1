@@ -1,5 +1,5 @@
 angular.module('fcws.services')
-    .factory('Camera', ['$q', function ($q) {
+    .factory('Photo', ['$q', function ($q) {
         return {
             getPicture: function (options) {
                 var q = $q.defer();
@@ -15,7 +15,7 @@ angular.module('fcws.services')
             }
         };
     }]);
-//
-//angular.module('fcws.services').config(function ($compileProvider) {
-//    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-//});
+
+angular.module('fcws.services').config(function ($compileProvider) {
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+});

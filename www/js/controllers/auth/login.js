@@ -21,13 +21,11 @@ angular.module('fcws.controllers')
                     $window.location.href = ('#/sidemenu/dashboard');
                 }).error(function (error, status) {
                 $rootScope.hide();
-                if (status === 0) {
-                    $rootScope.notify("没有网络连接,请检查网络");
-                } else if (status === 401) {
+                 if (status === 401) {
                     $rootScope.notify("无效的用户名或密码");
                 } else
                 {
-                    $rootScope.notify("未知错误");
+                    $rootScope.notify("登录错误");
                 }
                 console.log(status);
             });

@@ -26,6 +26,21 @@ angular.module('fcws.services')
                 $cordovaFileTransfer.abort();
             },
 
+            uploadAvatar: function(imageURL){
+                var token = User.getToken();
+                var url = SERVER.api_v1 + "/users/avatar?"+"access_token="+token;
+                var targetpath = imageURL;
+                var filename = targetpath.split("/").pop();
+                console.info("filename:" + filename);
+                var options = {
+                    fileKey: "avatar",
+                    fileName: filename,
+                    chunkedMode: false,
+                    mimeType: "image/jpg"
+                };
+                return $cordovaFileTransfer.upload(url, targetpath, options);
+            },
+
             upload: function (imageURL) {
                 var token = User.getToken();
                 var url = SERVER.api_v1 + "/upload?"+"access_token="+token;

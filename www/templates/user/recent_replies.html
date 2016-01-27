@@ -1,0 +1,11 @@
+<ion-view view-title="最近回复">
+    <ion-content>
+        <ion-list>
+            <a class="item item-icon-left" ng-repeat="reply in replies" ui-sref='sidemenu.post({post_id: reply.post_id})'>
+                <i class="icon ion-ios-chatboxes-outline"></i>
+                {{reply.content}}
+                <span class="item-note" am-time-ago="reply.create_at"></span>
+            </a >
+        </ion-list>
+    </ion-content>
+</ion-view>

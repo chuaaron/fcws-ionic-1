@@ -1,0 +1,24 @@
+<ion-view view-title="我的档案">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-divider"></ion-item>
+            <ion-item class="item-avatar-right" ng-click="showActions()">
+                <img ng-src="{{user.avatar || '../../img/logo.png'}}" >
+                <div class="item-text-center">头像</div>
+                <!--<span class="icon ion-ios-arrow-right item-note"></span>-->
+            </ion-item>
+            <ion-item class="item-icon-right">
+                姓名<span class="item-note"> {{user.name}}</span>
+                <span class="icon ion-ios-arrow-right item-note "></span>
+            </ion-item>
+            <ion-item class="item-icon-right">
+                ID<span class="item-note "> {{user.id}}</span>
+                <span class="icon ion-ios-arrow-right item-note"></span>
+            </ion-item>
+            <ion-item class="item-icon-right">
+                描述<span class="item-note"> {{user.description}}</span>
+                <span class="icon ion-ios-arrow-right item-note"></span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

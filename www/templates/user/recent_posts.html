@@ -1,0 +1,11 @@
+<ion-view view-title="最近情报">
+    <ion-content>
+        <ion-list>
+            <a class="item item-icon-left" ng-repeat="post in posts" ui-sref='sidemenu.post({post_id: post._id})'>
+                <i class="icon ion-ios-bookmarks-outline"></i>
+                {{post.content}}
+                <span class="item-note" am-time-ago="post.create_at"></span>
+            </a>
+        </ion-list>
+    </ion-content>
+</ion-view>
