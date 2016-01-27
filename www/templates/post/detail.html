@@ -19,11 +19,8 @@
 
                 <div class="summary">
                     <strong>
-                        <p>
-                            <img ng-src="img/commander.jpg" ng-if="post.author.role <= 5 " class="avatar">
-                            <img ng-src="img/sodier.jpg" ng-if="post.author.role === 6" class="avatar">
-                            {{post.author.name || post.author.description|| "" }}
-                        </p>
+                        <img ng-src="{{post.author.avatar || '../../img/logo.png'}}" class="avatar">
+                        {{post.author.name || post.author.description|| "" }}
                     </strong>
                     <span class="item-note" am-time-ago="post.createDate"></span>
                 </div>
@@ -36,10 +33,7 @@
                 暂无评论
             </ion-item>
             <ion-item class="item-avatar" ng-repeat="reply in post.replies" on-hold="showActions(reply)">
-                <img ng-src="img/commander.jpg" ng-if="reply.author.role <= 5 ">
-                <img ng-src="img/sodier.jpg" ng-if="reply.author.role === 6">
-
-                <p>
+                <img ng-src="{{reply.author.avatar || '../../img/logo.png'}}">
 
                 <p ng-class="{'bold': reply.author_id=== post.userId}">
                     {{reply.author.name || reply.author.description || ""}}

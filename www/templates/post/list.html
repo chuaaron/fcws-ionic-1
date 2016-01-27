@@ -27,8 +27,7 @@
         </div>
       <div ng-repeat="post in posts">
         <a class="item item-avatar-left" ng-class="{'important': post.important}" ui-sref='sidemenu.post({post_id: post._id})'>
-          <img ng-src="img/commander.jpg" ng-if="post.author.role <= 5 ">
-          <img ng-src="img/sodier.jpg" ng-if="post.author.role === 6">
+            <img ng-src="{{post.author.avatar || '../../img/logo.png'}}">
           <h2>
             <button class="button button-outline button-assertive button-small" ng-if="post.important">
               紧急

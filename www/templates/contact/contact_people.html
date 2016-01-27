@@ -13,7 +13,8 @@
         <ion-list can-swipe="true">
             <ion-item ng-repeat="user in users" class="item item-avatar-left">
                 <!--<img ng-src="{{user.avatar}}">-->
-                <img ng-src="img/sodier.jpg">
+                <!--<img ng-src="img/sodier.jpg">-->
+                <img ng-src="{{user.avatar || '../../img/logo.png'}}">
 
                 <h2>
                     <i class="icon ion-ios-person-outline balanced"> </i> {{user.name}}

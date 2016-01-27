@@ -170,6 +170,7 @@ angular.module('fcws', [
                 }
             })
 
+
             .state('sidemenu.user', {
                 url: '/user',
                 views: {
@@ -458,7 +459,17 @@ angular.module('fcws', [
                         controller: 'ConfigCtrl'
                     }
                 }
-            });
+            })
+
+            .state('sidemenu.about', {
+                url: '/about',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/about.html',
+                        controller: 'ConfigCtrl'
+                    }
+                }
+            })
 
         //$urlRouterProvider.otherwise('signin');
         $urlRouterProvider.otherwise('sidemenu/dashboard');
@@ -468,8 +479,8 @@ angular.module('fcws', [
         //api_v1: 'http://fcws.nemoworks.info/api/v1',
         //uploads: 'http://fcws.nemoworks.info/uploads'
 
-        api_v1 : 'http://localhost:3000/api/v1',
-        ip : 'http://localhost:3000'
+        api_v1: 'http://localhost:3000/api/v1',
+        ip: 'http://localhost:3000'
 
 
         //api_v1: 'http://121.42.175.137:3000/api/v1',
