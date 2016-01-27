@@ -13,12 +13,11 @@
     <ion-content class="bar-balanced">
       <ion-list>
         <ion-item nav-clear menu-close class="item item-avatar item-balanced" href="#/sidemenu/user">
-          <img ng-src="img/commander.jpg" ng-if="role <= 5 ">
-          <img ng-src="img/sodier.jpg" ng-if="role === 6">
+          <img ng-src="{{user.avatar || '../img/logo.png'}}" ng-if="user.role <= 5 ">
           <h2 class=" light">
-            <i class="icon ion-ios-star"></i>{{district}}{{description}}
+            <i class="icon ion-ios-star"></i>{{user.district}}{{user.description}}
           </h2>
-          <a>{{username || "" }} </a>
+          <a>{{user.name || "" }} </a>
         </ion-item>
         <ion-item nav-clear menu-close href="#/sidemenu/dashboard" class="item-icon-left">
           <i class="icon ion-ios-home-outline balanced">        </i>首页</ion-item>

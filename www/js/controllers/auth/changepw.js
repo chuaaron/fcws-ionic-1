@@ -10,7 +10,6 @@ angular.module('fcws.controllers')
 
 
     $scope.changePassword = function() {
-      var id = User.getUserId();
       var password = $scope.user.password.trim();
       var new_password = $scope.user.new_password.trim();
       var repeat_password = $scope.user.repeat_password.trim();
@@ -20,7 +19,6 @@ angular.module('fcws.controllers')
       }
 
       Auth.changePassword({
-        'id': id,
         'password': password,
         'new_password': new_password,
       }).success(function() {

@@ -3,7 +3,7 @@
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     <ion-content>
-        <ion-refresher on-refresh="reloadUser()"></ion-refresher>
+        <!--<ion-refresher on-refresh="reloadUser()"></ion-refresher>-->
         <ion-list>
             <ion-item class="item-divider">
                 <!--个人信息-->
@@ -14,8 +14,8 @@
             <!--</ion-item>-->
 
             <ion-item class="item-avatar item-icon-right" href="#/sidemenu/user/profile">
-                <img ng-src="{{user.avatar || 'img/logo.png'}}">
-                <h2>{{user.name}}</h2>
+                <img ng-src="{{user.avatar || '../../img/logo.png'}}">
+                <h2>{{user.district }}{{user.name}}</h2>
                 <p>{{user.description}}</p>
                 <span class="icon ion-ios-arrow-right item-note"></span>
             </ion-item>
@@ -24,13 +24,13 @@
 
             </ion-item>
 
-            <ion-item class="item-icon-left item-icon-right">
+            <ion-item class="item-icon-left item-icon-right" href="#/sidemenu/user/recentposts">
                 <i class="icon ion-ios-bookmarks-outline"></i>
                 最近主题
                 <span class="icon ion-ios-arrow-right item-note"></span>
             </ion-item>
 
-            <ion-item class="item-icon-left item-icon-right">
+            <ion-item class="item-icon-left item-icon-right" href="#/sidemenu/user/recentreplies">
                 <i class="icon ion-ios-chatboxes-outline"></i>
                 最近回复
                 <span class="icon ion-ios-arrow-right item-note"></span>
@@ -49,15 +49,15 @@
                 <!--最近回复-->
             <!--</ion-item>-->
 
-            <ion-item ng-repeat="reply in user.recent_replies" ui-sref='sidemenu.post({post_id: reply.post_id})'>
-                <h2 class="balanced">{{reply.content}}</h2>
+            <!--<ion-item ng-repeat="reply in user.recent_replies" ui-sref='sidemenu.post({post_id: reply.post_id})'>-->
+                <!--<h2 class="balanced">{{reply.content}}</h2>-->
 
-                <p>
-                    {{reply.userName}}
-          <span class="item-note" am-time-ago="reply.createDate">
-          </span>
-                </p>
-            </ion-item>
+                <!--<p>-->
+                    <!--{{reply.userName}}-->
+          <!--<span class="item-note" am-time-ago="reply.createDate">-->
+          <!--</span>-->
+                <!--</p>-->
+            <!--</ion-item>-->
 
         </ion-list>
     </ion-content>

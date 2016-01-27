@@ -1,26 +1,53 @@
 angular.module('fcws.controllers')
+    .controller('UserPostsCtrl', function ($scope, $rootScope, $state, Auth) {
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $scope.posts = Auth.getLocalPosts();
+            Auth.getRecentPosts()
+                .success(function (data) {
+                    Auth.storeLocalPosts(data);
+                    $scope.posts = Auth.getLocalPosts();
+                }).error(function () {
+                });
+        });
+    });
+
+angular.module('fcws.controllers')
+    .controller('UserRepliesCtrl', function ($scope, $rootScope, $state, Auth) {
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $scope.replies= Auth.getLocalReplies();
+            Auth.getRecentReplies()
+                .success(function (data) {
+                    Auth.storeLocalReplies(data);
+                    $scope.replies = Auth.getLocalReplies();
+                }).error(function () {
+            });
+        });
+    });
+
+
+angular.module('fcws.controllers')
     .controller('UserCtrl', function ($scope, $rootScope, $state, User, API, $log, Auth, $ionicActionSheet, Photo, $cordovaImagePicker, Uploader, $ionicLoading, $timeout) {
         $scope.$on('$ionicView.beforeEnter', function () {
-            $scope.user = User.getUserDetail();
-            $scope.loadUser();
+            $scope.user = User.getUser();
+            //$scope.loadUser();
         });
 
-        $scope.loadUser = function () {
-            Auth.getDetail().success(function (data) {
-                User.storeUserDetail(data);
-            }).error(function () {
-                $log.error("error loadUser");
-            }).finally(function () {
-                $scope.user = User.getUserDetail();
-                //console.log(JSON.stringify($scope.user.avatar));
-                $rootScope.$broadcast('scroll.refreshComplete');
-            })
-        };
+        //$scope.loadUser = function () {
+        //    Auth.getDetail().success(function (data) {
+        //        User.storeUserDetail(data);
+        //    }).error(function () {
+        //        $log.error("error loadUser");
+        //    }).finally(function () {
+        //        $scope.user = User.getUserDetail();
+        //        //console.log(JSON.stringify($scope.user.avatar));
+        //        $rootScope.$broadcast('scroll.refreshComplete');
+        //    })
+        //};
 
-        $scope.reloadUser = function () {
-            $scope.loadUser();
-
-        };
+        //$scope.reloadUser = function () {
+        //    $scope.loadUser();
+        //
+        //};
 
         $scope.showActions = function () {
             // Show the action sheet
@@ -89,7 +116,8 @@ angular.module('fcws.controllers')
 
             Auth.uploadAvatar({image: image})
                 .success(function (data) {
-                    //alert("success");
+                    User.setAvatar(data);
+                    $scope.user = User.getUser();
                 }).error(function () {
 
             }).finally(function () {

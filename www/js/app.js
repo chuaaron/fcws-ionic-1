@@ -45,7 +45,9 @@ angular.module('fcws', [
             var current_state_name = $state.current.name;
             if (current_state_name !== 'sidemenu.post'
                 && current_state_name !== 'sidemenu.contact_town' &&
-                current_state_name !== 'sidemenu.contact_people') {
+                current_state_name !== 'sidemenu.contact_people' &&
+                current_state_name !== 'sidemenu.profile' &&
+                current_state_name !== 'sidemenu.recentposts') {
                 $ionicPopup.confirm({
                     title: '退出应用',
                     template: '您确定要退出凤城卫士吗?',
@@ -183,6 +185,25 @@ angular.module('fcws', [
                     'menuContent': {
                         templateUrl: 'templates/user/profile.html',
                         controller: 'UserCtrl'
+                    }
+                }
+            })
+
+            .state('sidemenu.recentposts', {
+                url: '/user/recentposts',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/user/recent_posts.html',
+                        controller: 'UserPostsCtrl'
+                    }
+                }
+            })
+            .state('sidemenu.recentreplies', {
+                url: '/user/recentreplies',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/user/recent_replies.html',
+                        controller: 'UserRepliesCtrl'
                     }
                 }
             })
@@ -447,15 +468,15 @@ angular.module('fcws', [
         //api_v1: 'http://fcws.nemoworks.info/api/v1',
         //uploads: 'http://fcws.nemoworks.info/uploads'
 
-        //api_v1 : 'http://localhost:3000/api/v1',
-        //ip : 'http://localhost:3000'
+        api_v1 : 'http://localhost:3000/api/v1',
+        ip : 'http://localhost:3000'
 
 
         //api_v1: 'http://121.42.175.137:3000/api/v1',
         //ip: 'http://121.42.175.137:3000'
 
-        api_v1: 'http://114.212.83.123:3000/api/v1',
-        ip: 'http://114.212.83.123:3000'
+        //api_v1: 'http://114.212.83.123:3000/api/v1',
+        //ip: 'http://114.212.83.123:3000'
 
     });
 

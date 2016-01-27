@@ -1,26 +1,16 @@
 angular.module('fcws.services')
-    .factory('User', function ($q, $localstorage, $log, $rootScope) {
+    .factory('User', function ($q, $localstorage){
         var userKey = 'user';
-        var userDetailKey = 'userDetail';
+        //var mypostsKey = 'myposts';
         var user = $localstorage.get(userKey);
-        var userdetail = $localstorage.get(userDetailKey);
-
         return {
 
-            getUserDetail : function () {
-                return $localstorage.get(userDetailKey);
-            },
-            storeUserDetail: function (data) {
-                $localstorage.set(userDetailKey,data);
-                userdetail =  $localstorage.get(userDetailKey);
-            },
 
-            //如果这里 data设为 user则会出现bug，因为这里已经有一个全局的user了。
+
+            getUser : function(){
+                return $localstorage.get(userKey);
+            },
             loginUser: function (data) {
-                $log.log(data.id + " " + data.name + " " + data.description + " " + data.role + " " + data.accessToken +" " +data.district + " " + data.avatar);
-                //if(data.avatar == undefined){
-                //    data.avatar = 'img/sodier.png';
-                //}
                 $localstorage.set(userKey, {
                     id: data.id,
                     name: data.name,
@@ -31,11 +21,24 @@ angular.module('fcws.services')
                     avatar : data.avatar
                 });
                 user = $localstorage.get(userKey);
-                $rootScope.$broadcast('login');
             },
             logoutUser: function () {
                 $localstorage.remove(userKey);
             },
+
+            //getMyPosts : function(){
+            //    return $localstorage.get(mypostsKey);
+            //},
+            //storeMyPosts : function(post){
+            //    var myposts = $localstorage.get(mypostsKey);
+            //    if(!posts){
+            //
+            //    }
+            //},
+
+
+
+
             getUserId: function () {
                 return user.id + "";
             },
@@ -57,6 +60,12 @@ angular.module('fcws.services')
             },
             getAvatar : function(){
                 return user.avatar;
-            }
+            },
+            setAvatar : function(avatar){
+                var user = $localstorage.get(userKey);
+                user.avatar = avatar;
+                $localstorage.set(userKey,user);
+            },
+
         };
     });
