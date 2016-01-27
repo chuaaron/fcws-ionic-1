@@ -1,7 +1,7 @@
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in user.html)
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
 angular.module('fcws', [
@@ -85,7 +85,7 @@ angular.module('fcws', [
 
     .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider, $httpProvider) {
 
-        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content|file|assets-library):/);
+        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content|file|assets-library):|data:image\//);
         $ionicConfigProvider.navBar.alignTitle('center');
 
 
@@ -102,6 +102,8 @@ angular.module('fcws', [
                     if (response.status === 401 || response.status === 403) {
                         //如果之前登陆过
                         if (User.getToken()) {
+                            //alert(User.getToken());
+                            //console.log(User.getToken());
                             $rootScope.$broadcast('unAuthenticed');
                         }
                     }
@@ -160,7 +162,7 @@ angular.module('fcws', [
                 url: '/dashboard',
                 views: {
                     'menuContent': {
-                        templateUrl:  'templates/dashboard.html',
+                        templateUrl: 'templates/dashboard.html',
                         controller: 'DashboardCtrl'
                     }
                 }
@@ -170,7 +172,16 @@ angular.module('fcws', [
                 url: '/user',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/user.html',
+                        templateUrl: 'templates/user/index.html',
+                        controller: 'UserCtrl'
+                    }
+                }
+            })
+            .state('sidemenu.profile', {
+                url: '/user/profile',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/user/profile.html',
                         controller: 'UserCtrl'
                     }
                 }
@@ -207,7 +218,6 @@ angular.module('fcws', [
             })
 
 
-
             .state('sidemenu.control', {
                 url: '/control',
                 views: {
@@ -237,7 +247,6 @@ angular.module('fcws', [
                     }
                 }
             })
-
 
 
             .state('sidemenu.train', {
@@ -436,21 +445,17 @@ angular.module('fcws', [
     })
     .constant('SERVER', {
         //api_v1: 'http://fcws.nemoworks.info/api/v1',
-        //docs:'http://fcws.nemoworks.info/assets/docs',
         //uploads: 'http://fcws.nemoworks.info/uploads'
 
-        // api_v1: 'http://localhost:3000/api/v1',
-        // docs:'http://localhost:3000/assets/docs',
-        // uploads: 'http://localhost:3000/uploads'
+        //api_v1 : 'http://localhost:3000/api/v1',
+        //ip : 'http://localhost:3000'
 
 
-        api_v1: 'http://121.42.175.137:3000/api/v1',
-        docs: 'http://121.42.175.137:3000/assets/docs',
-        uploads: 'http://121.42.175.137:3000/uploads'
+        //api_v1: 'http://121.42.175.137:3000/api/v1',
+        //ip: 'http://121.42.175.137:3000'
 
-        //api_v1: 'http://114.212.83.123:3000/api/v1',
-        //docs: 'http://114.212.83.123:3000/assets/docs',
-        //uploads: 'http://114.212.83.123:3000/uploads'
+        api_v1: 'http://114.212.83.123:3000/api/v1',
+        ip: 'http://114.212.83.123:3000'
 
     });
 

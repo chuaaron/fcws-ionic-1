@@ -1,6 +1,6 @@
 angular.module('fcws.controllers')
     .controller('PostsCtrl', function ($scope, Posts, $rootScope, $ionicLoading,
-                                       User, API, $log, $ionicModal, $filter, Camera, $cordovaImagePicker, $ionicActionSheet, $timeout, Uploader, $ionicScrollDelegate, $window) {
+                                       User, API, $log, $ionicModal, $filter, $cordovaImagePicker, $ionicActionSheet, $timeout, Uploader, $ionicScrollDelegate, Photo) {
 
         // pagination
         $scope.hasNextPage = false;
@@ -141,34 +141,47 @@ angular.module('fcws.controllers')
         //take photo with camera
         $scope.takePhoto = function () {
             var options = {
-                quality: 20
-            }
+                quality: 50,
+                destinationType: Camera.DestinationType.FILE_URI,
+                targetWidth: 1080,
+                targetHeight: 1920
+            };
 
-            Camera.getPicture(options).then(function (imageURI) {
+            Photo.getPicture(options).then(function (imageURI) {
                 $scope.imageToUpload = imageURI;
             }, function (err) {
-
+                //
             });
         };
 
+
         //image picker
         $scope.pickImage = function () {
-            //if ($scope.imageToUpload !== null) {
-            //    $rootScope.notify("最多添加一张照片");
-            //    return;
-            //}
             var options = {
-                maximumImagesCount: 1,
-                quality: 20
+                quality: 50,
+                sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+                destinationType: Camera.DestinationType.FILE_URI,
             };
-            $cordovaImagePicker.getPictures(options)
-                .then(function (results) {
-                    if(results[0].trim() !== "" && results[0] !== null){
-                        $scope.imageToUpload = results[0];
-                    }
-                }, function (error) {
-                    // error getting photos
+
+            Photo.getPicture(options)
+                .then(function (imageURI) {
+                    $scope.imageToUpload = imageURI;
+                }, function (err) {
+                    //alert(err);
                 });
+
+            //var options = {
+            //    maximumImagesCount: 1,
+            //    quality: 20
+            //};
+            //$cordovaImagePicker.getPictures(options)
+            //    .then(function (results) {
+            //        if(results[0].trim() !== "" && results[0] !== null){
+            //            $scope.imageToUpload = results[0];
+            //        }
+            //    }, function (error) {
+            //        // error getting photos
+            //    });
         };
 
         $scope.removePhoto = function () {

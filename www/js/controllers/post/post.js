@@ -63,7 +63,7 @@ angular.module('fcws.controllers')
                 $scope.post = Post.getLocalPost(post_id);
                 if ($scope.post.photos !== undefined) {
                     for (var i = 0; i < $scope.post.photos.length; i++) {
-                        $scope.post.photos[i] = SERVER.uploads + "/" + $scope.post.photos[i];
+                        $scope.post.photos[i] = SERVER.ip+ "/uploads/" + $scope.post.photos[i];
                         console.log($scope.post.photos[i]);
                     }
                 }

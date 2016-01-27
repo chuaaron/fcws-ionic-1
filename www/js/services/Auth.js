@@ -15,6 +15,9 @@ angular.module('fcws.services')
             getDetail: function () {
                 return $http.get(SERVER.api_v1 + '/users/details');
             },
+            uploadAvatar: function(form){
+                return $http.post(SERVER.api_v1 + '/users/avatar', form);
+            }
 
 
 
