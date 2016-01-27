@@ -34,7 +34,8 @@
         <ion-list>
             <ion-checkbox  ng-model="filter.isAllSelect"  ng-click="toggleAllSelection()" ng-if="belongs.length !== 0">全选</ion-checkbox>
             <div class="item item-avatar-right item-checkbox" ng-repeat="belong in belongs">
-                <img src="img/commander.jpg">
+                <img ng-src="{{belong.avatar || 'img/logo.png'}}">
+                <!--<img src="img/commander.jpg">-->
                 <label class="checkbox">
                     <input
                             type="checkbox"

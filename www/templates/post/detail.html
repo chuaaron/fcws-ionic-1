@@ -19,7 +19,7 @@
 
                 <div class="summary">
                     <strong>
-                        <img ng-src="{{post.author.avatar || '../../img/logo.png'}}" class="avatar">
+                        <img ng-src="{{post.author.avatar || 'img/logo.png'}}" class="avatar">
                         {{post.author.name || post.author.description|| "" }}
                     </strong>
                     <span class="item-note" am-time-ago="post.createDate"></span>
@@ -33,7 +33,7 @@
                 暂无评论
             </ion-item>
             <ion-item class="item-avatar" ng-repeat="reply in post.replies" on-hold="showActions(reply)">
-                <img ng-src="{{reply.author.avatar || '../../img/logo.png'}}">
+                <img ng-src="{{reply.author.avatar || 'img/logo.png'}}">
 
                 <p ng-class="{'bold': reply.author_id=== post.userId}">
                     {{reply.author.name || reply.author.description || ""}}

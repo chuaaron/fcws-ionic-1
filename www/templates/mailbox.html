@@ -10,7 +10,8 @@
             </div>
             <div ng-repeat="message in messages.hasnot_read_messages">
                 <div class="item item-avatar-left" ng-click="showContent(message)">
-                    <img src="img/commander.jpg">
+                    <!--<img src="img/commander.jpg">-->
+                    <img ng-src="{{message.sender.avatar || 'img/logo.png'}}">
                     <span class="item-note"  am-time-ago="message.create_at" ></span>
 
                     <h2>{{message.sender.description}}{{message.sender.name}}</h2>
@@ -24,7 +25,8 @@
             </div>
             <div ng-repeat="message in messages.has_read_messages">
                 <div class="item item-avatar-left" ng-click="showContent(message)">
-                    <img src="img/commander.jpg">
+                    <!--<img src="img/commander.jpg">-->
+                    <img ng-src="{{message.sender.avatar || 'img/logo.png'}}">
                     <span class="item-note" am-time-ago="message.create_at"></span>
 
                     <h2>{{message.sender.description}}{{message.sender.name}}</h2>
