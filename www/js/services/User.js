@@ -11,6 +11,7 @@ angular.module('fcws.services')
                 return $localstorage.get(userKey);
             },
             loginUser: function (data) {
+                //console.log(JSON.stringify(data));
                 $localstorage.set(userKey, {
                     id: data.id,
                     name: data.name,
