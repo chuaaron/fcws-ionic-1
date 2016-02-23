@@ -1,5 +1,7 @@
 angular.module('fcws.controllers')
     .controller('ConfigCtrl', function ($scope, $rootScope, $state, User, $ionicPopup, API, $window, $cordovaFileTransfer, $cordovaFileOpener2, $ionicLoading, SERVER,Update, $timeout) {
+
+
         $scope.logout = function () {
             User.logoutUser();
             $state.go('signin');
@@ -18,6 +20,7 @@ angular.module('fcws.controllers')
             cordova.getAppVersion().then(function (version) {
                 $scope.currentVersion = version;
             });
+            $scope.isIOS = ionic.Platform.isIOS();
         });
 
         $scope.checkUpdate = function () {
