@@ -483,8 +483,8 @@ angular.module('fcws', [
         //ip: 'http://localhost:3000'
 
 
-        api_v1: 'http://121.42.175.137:3000/api/v1',
-        ip: 'http://121.42.175.137:3000'
+        api_v1: 'http://ecs.nemoworks.info:3000/api/v1',
+        ip: 'http://ecs.nemoworks.info:3000'
 
         //api_v1: 'http://114.212.83.123:3000/api/v1',
         //ip: 'http://114.212.83.123:3000'
